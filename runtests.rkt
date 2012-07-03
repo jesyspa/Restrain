@@ -8,3 +8,4 @@
 (run-tests rtree-tests)
 (run-tests lex-tests)
 (run-tests parse-tests)
+(run-tests emit-c++-expr-tests)

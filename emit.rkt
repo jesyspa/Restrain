@@ -8,14 +8,23 @@
 (define (emit-c++ tree)
   "")
 
+(define (emit-expr tree)
+  (cond
+    [(equal? (first tree) 'number) (number->string (second tree))]))
+
 ;;;;
 ;;;; Tests
 ;;;;
 
-(require rackunit)
+(require rackunit
+         "rparse.rkt")
 
-(provide emit-c++-tests)
+(provide emit-c++-expr-tests)
 
-(define emit-c++-tests
+(define emit-c++-expr-tests
   (test-suite
-   "Ensure correct C++ is emitted for the given trees."))
+   "Ensure correct C++ is emitted for the given trees."
+   
+   (test-case
+    "Ensure numbers are generated verbatim."
+    (check-equal? (emit-expr '(number 5)) "5"))))

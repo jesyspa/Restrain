@@ -6,6 +6,7 @@
 (define (rtree? tree)
   (cond
     [(not (list? tree)) #f]
+    [(empty? tree) #f]
     [(equal? (first tree) 'number) (and (= (length tree) 2)
                                         (number? (second tree)))]
     [(equal? (first tree) 'symbol) (and (= (length tree) 2)
@@ -28,6 +29,10 @@
 (define rtree-tests
   (test-suite
    "Ensure that only valid ASTs are accepted."
+   
+   (test-case
+    "Ensure the empty tree is not accepted."
+    (check-equal? (rtree? '()) #f))
    
    (test-case
     "Ensure only valid numbers are accepted as such."
