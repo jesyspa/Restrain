@@ -1,0 +1,17 @@
+; An example implementation of fibonacci in Restrain.
+; Define a function fib that takes an integer >= 0 and returns an integer >= 0
+(defun (Z0+ fib) ((Z0+ n))
+  ; Try to treat n as an integer >= 2
+  ; Should compile down to a simple if, but with the added benefit of
+  ; converting the type.
+  (try-cast (n Z2+)
+    ; If this succeeds, perform the usual recursion.
+    ; Note that as n is now of type Z2+ and 1 is of type Z1,
+    ; the expression (- n 1) yields a Z1+ and (- n 1) yields a
+    ; Z0+.  Because Z1+ is a subset of Z0+, we can call fib with
+    ; an instance of Z1+.
+    (+ (fib (- n 1))
+       (fib (- n 2)))
+    ; if the cast fails, n gets the type Z<0,1>, also known as
+    ; Z[-1,1>, Z<0,2], and Z[-1,2].
+    n))
