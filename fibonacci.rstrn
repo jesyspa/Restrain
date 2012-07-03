@@ -4,7 +4,7 @@
   ; Try to treat n as an integer >= 2
   ; Should compile down to a simple if, but with the added benefit of
   ; converting the type.
-  (try-cast Z2+ n
+  (try-restrict Z2+ n
     ; If this succeeds, perform the usual recursion.
     ; Note that as n is now of type Z2+ and 1 is of type Z1,
     ; the expression (- n 1) yields a Z1+ and (- n 1) yields a
